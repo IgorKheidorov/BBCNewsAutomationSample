@@ -19,10 +19,9 @@ namespace BBCNewsPortalTests
         [TestMethod]
         [DataRow("Reel")]
         [DataRow("Travel")]
-        [DataRow("Worklife")]        
+        [DataRow("Worklife")]
         [DataRow("Sport")]
-        
-
+        [DataRow("News")]
         public void CorrectMenuPointLinksTest(string menuItem)
         {            
             BBCHomePage homePage = new BBCHomePage(_driver);
@@ -35,9 +34,7 @@ namespace BBCNewsPortalTests
         {
             BBCSearchPage page = new BBCSearchPage(_driver);
             var results= page.GetSearchResults("Mexico");
-
             var filteredResults = results.Where(x => x.Contains("Mexico")).ToList();
-
             Assert.IsTrue(filteredResults.Count >= results.Count / 2);
         }
 
@@ -45,13 +42,9 @@ namespace BBCNewsPortalTests
         public void CheckSearchPageNegative()
         {
             BBCSearchPage page = new BBCSearchPage(_driver);
-            var results = page.GetSearchResults("sdkafjdsafasfasdf");           
-
+            var results = page.GetSearchResults("sdkafjdsafasfasdf");    
             Assert.IsTrue(results.Where(x => x.Contains("Sorry")).Count() > 0);
         }
-
-
-
 
         [TestCleanup]
         public void CleanUp()

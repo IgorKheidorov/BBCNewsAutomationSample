@@ -18,7 +18,6 @@ namespace BBCNewsAutomation
 
         //SOLID
 
-
         public BBCBasePage(IWebDriver _driver, string URL)
         {
             _webDriver = _driver;
@@ -69,24 +68,6 @@ namespace BBCNewsAutomation
             else 
             {
                 _logger.LogMessage($"Menu point {menuPoint} was found");
-
-                try
-                {
-                    _webDriver.SwitchTo().Frame("sp_message_iframe_905534");
-
-                    // Create a better XPath
-
-                    var button = GetElementsByXPath("//html//body//div[2]//div//div//div//div[3]//div[2]//button").FirstOrDefault();
-
-                    button?.Click();
-                    _webDriver.SwitchTo().DefaultContent();
-                }
-                catch(Exception ex) 
-                {
-                
-                }
-                
-
              
                 ClickElement(element);
             }

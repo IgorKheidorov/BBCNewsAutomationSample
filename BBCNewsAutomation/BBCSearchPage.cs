@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BBCNewsAutomation
 {
-    public class BBCSearchPage
+    public class BBCSearchPage: BBCBasePage
     {
         IWebDriver _webDriver;
 
@@ -21,7 +21,7 @@ namespace BBCNewsAutomation
 
         WebDriverWait _wait;
 
-        public BBCSearchPage(IWebDriver driver)
+        public BBCSearchPage(IWebDriver driver):base(driver, "https://www.bbc.com")
         {
             _webDriver = driver;
             _webDriver.Url = PAGE_URL;
@@ -31,7 +31,7 @@ namespace BBCNewsAutomation
 
         public List<string> GetSearchResults(string infoToSearch)
         {
-            var searchBox = _webDriver.FindElement(By.XPath(SEARCH_BOX_XPATH));
+            var searchBox = GetElementByXPath(SEARCH_BOX_XPATH);
             searchBox.SendKeys(infoToSearch);
 
             var searchButton = _webDriver.FindElement(By.XPath(SEARCH_BUTTON_XPATH));
